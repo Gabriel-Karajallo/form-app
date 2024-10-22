@@ -4,11 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ReactiveRoutingModule } from './reactive-routing.module';
 
 
+
+
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
+
   imports: [
     CommonModule,
-    ReactiveRoutingModule
+    ReactiveRoutingModule,
+
+  ],
+  exports:[
+
   ]
 })
 export class ReactiveModule { }
