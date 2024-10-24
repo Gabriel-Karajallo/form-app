@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, PristineChangeEvent, Validators } from '@angula
 
 const rtx5090 = {
   name: '',
-  price: 2500,
-  inStorage: 6
+  price: 0,
+  inStorage: 0
 }
 
 
@@ -33,10 +33,30 @@ export class BasicPageComponent implements OnInit {
   }
 
   // simplificar la forma de como se va a ejecutar la validacion si el campo es valido o no
-  isValidField( field: string ) {
-    return this.myForm.controls['name'].getError('required') && myForm.controls['name'].touched
+  isValidField( field: string ): boolean | null{
+    return this.myForm.controls[field].errors
+    && this.myForm.controls[field].touched;
   }
 
+
+  getFieldError( field: string ): string | null{
+
+     if( !this.myForm.controls[field] )  return null;
+
+     const errors = this.myForm.controls[field].errors || {};
+
+     for (const key of Object.keys(errors) ) {
+      switch( key ) {
+        case 'required':
+          return 'Este campo es requerido';
+
+        case 'minlength':
+          return `Mínimo ${ errors['minlength'].requiredLength } caracteres`;
+      }
+     }
+
+     return null
+  }
 
   onSave(): void {
     if( this.myForm.invalid ){
