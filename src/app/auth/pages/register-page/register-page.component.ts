@@ -19,7 +19,6 @@ export class RegisterPageComponent {
     });
   }
 
-
   isValidField( field: string){
     //TODO: OBTENER VALIDACION DESDE UN SERVICIO
   }
